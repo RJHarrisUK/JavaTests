@@ -1,0 +1,40 @@
+package com.bae.mp2.selenium;
+
+import org.junit.AfterClass;
+import org.junit.BeforeClass;
+import org.junit.Test;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Action;
+import org.openqa.selenium.interactions.Actions;
+
+public class YouIDraw {
+
+	public static WebDriver driver;
+
+	@BeforeClass
+	public static void setup() {
+		System.setProperty("webdriver.chrome.driver",
+				"C:\\Users\\Admin\\Downloads\\chromedriver_win32\\chromedriver.exe");
+		driver = new ChromeDriver();
+	}
+
+	@AfterClass
+	public static void teardown() throws InterruptedException {
+		Thread.sleep(10000);
+		driver.quit();
+	}
+
+	@Test
+	public void mthodTest() {
+		Actions action = new Actions(driver);
+		driver.manage().window().maximize();
+		driver.get("https://www.youidraw.com/apps/painter/");
+	
+		action.moveByOffset(600, 222).clickAndHold().moveByOffset(0, 400).release().perform();
+		action.moveByOffset(0, -400).clickAndHold().moveByOffset(100, 100).release().perform();
+	
+	}
+}

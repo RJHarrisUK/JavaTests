@@ -1,0 +1,10 @@
+package com.bae.mp2.selenium;
+
+public class TestClass {
+
+	public void test() {
+	@BeforeClass
+	System.setProperty("webdriver.chrome.driver", "C:\\Users\\Admin\\Downloads\\chromedriver_win32\chromedriver.exe");
+	}
+	
+}

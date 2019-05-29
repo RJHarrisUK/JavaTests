@@ -1,0 +1,12 @@
+package com.bae.blackjack.tests;
+
+import com.bae.blackjack.mainapp.Blackjack;
+
+public class Twistable {
+
+	int outputValue=0;
+	
+	public int twist() {
+		return this.outputValue;
+	}
+}

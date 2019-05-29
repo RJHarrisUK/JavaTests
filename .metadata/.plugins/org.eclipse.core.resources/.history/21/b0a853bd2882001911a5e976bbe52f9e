@@ -1,0 +1,51 @@
+package com.bae.mp2.selenium;
+
+import org.junit.AfterClass;
+import org.junit.BeforeClass;
+import org.junit.Test;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
+
+public class PHPTravel {
+
+	public static WebDriver driver;
+	Actions action = new Actions(driver);
+	
+	@BeforeClass
+	public static void setup() {
+		System.setProperty("webdriver.chrome.driver",
+				"C:\\Users\\Admin\\Downloads\\chromedriver_win32\\chromedriver.exe");
+		driver = new ChromeDriver();
+	}
+
+	@AfterClass
+	public static void teardown() throws InterruptedException {
+		Thread.sleep(10000);
+		driver.quit();
+	}
+
+	@Test
+	public void mthodTest() throws InterruptedException {
+		driver.manage().window().maximize();
+		driver.get("https://www.phptravels.net/");
+		
+	WebElement dateFrom = driver.findElement(By.xpath("//*[@id=\"dpd1\"]/div/input"));	
+	dateFrom.sendKeys("30/05/2019");
+	
+	WebElement dateTo = driver.findElement(By.xpath("//*[@id=\"dpd2\"]/div/input"));
+	dateTo.sendKeys("03/06/2019");
+	
+	WebElement passengerBtn = driver.findElement(By.xpath("//*[@id=\"travellersInput\"]"));
+	passengerBtn.click();
+	
+	WebElement adultsPlus = driver.findElement(By.xpath("//*[@id=\"adultPlusBtn\"]"));
+	adultsPlus.click();
+	
+	WebElement search = driver.findElement(By.xpath("//*[@id=\"select2-drop\"]/div/input"));
+	search.sendKeys("London, United Kingdom");
+	action.sendKeys(Keys.ENTER).perform();
+	}
+}

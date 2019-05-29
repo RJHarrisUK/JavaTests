@@ -1,0 +1,39 @@
+package com.bae.mp2.selenium;
+
+import org.junit.AfterClass;
+import org.junit.BeforeClass;
+import org.junit.Test;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class ShoppingWebsite {
+
+	public static WebDriver driver;
+
+	@BeforeClass
+	public static void setup() {
+		System.setProperty("webdriver.chrome.driver",
+				"C:\\Users\\Admin\\Downloads\\chromedriver_win32\\chromedriver.exe");
+		driver = new ChromeDriver();
+	}
+
+	@AfterClass
+	public static void teardown() throws InterruptedException {
+		Thread.sleep(10000);
+		driver.quit();
+	}
+
+	@Test
+	public void mthodTest(Object name) {
+		driver.manage().window().maximize();
+		driver.get("http://automationpractice.com/index.php");
+	
+	WebElement search = driver.findElement(By.xpath("//*[@id=\"search_query_top\"]"));
+	search.sendKeys("Dress");
+	search.submit();
+	driver.findElement(name.equals("Dress"));
+	}
+
+	}

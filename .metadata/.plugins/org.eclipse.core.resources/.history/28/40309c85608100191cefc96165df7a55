@@ -1,0 +1,10 @@
+package com.bae.blackjack.mainapp;
+
+public class Twistable {
+
+	int outputValue=((int)(Math.random()*11)+1);
+	
+	public int twist() {
+		return this.outputValue;
+	}
+}
