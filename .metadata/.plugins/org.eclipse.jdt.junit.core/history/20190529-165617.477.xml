@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?><testrun name="PHPTravel" project="selenium" tests="1" started="1" failures="0" errors="0" ignored="0">
-  <testsuite name="com.bae.mp2.selenium.PHPTravel" time="30.873">
-    <testcase name="mthodTest" classname="com.bae.mp2.selenium.PHPTravel" time="30.873"/>
-  </testsuite>
-</testrun>

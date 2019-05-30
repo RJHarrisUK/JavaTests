@@ -1,0 +1,145 @@
+package com.bae.mp2.selenium;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+
+import org.apache.poi.xssf.usermodel.XSSFCell;
+import org.apache.poi.xssf.usermodel.XSSFRow;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.junit.AfterClass;
+import org.junit.BeforeClass;
+import org.junit.Test;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class ApachePOITest {
+
+	public static WebDriver driver;
+	// set usernames + passwords
+	String username1 = "TestUser001";
+	String username2 = "TestUser002";
+	String username3 = "TestUser003";
+	String username4 = "TestUser004";
+
+	String password1 = "Password123";
+	String password2 = "Password456";
+	String password3 = "Password789";
+	String password4 = "Password101";
+
+	@BeforeClass
+	public static void setup() {
+		System.setProperty("webdriver.chrome.driver",
+				"C:\\Users\\Admin\\Downloads\\chromedriver_win32\\chromedriver.exe");
+		driver = new ChromeDriver();
+	}
+
+	@AfterClass
+	public static void teardown() throws InterruptedException {
+		Thread.sleep(20000);
+		driver.quit();
+	}
+
+	@Test
+	public void mthodTest() {
+		driver.manage().window().maximize();
+		driver.get("https://thedemosite.co.uk/");
+
+		// Go to the user tab
+		WebElement addUserTab = driver.findElement(
+				By.xpath("/html/body/div[1]/center/table/tbody/tr[2]/td/div/center/table/tbody/tr/td[2]/p/small/a[3]"));
+		addUserTab.click();
+
+		// Set username and password
+		WebElement addUsername = driver.findElement(By.xpath(
+				"/html/body/table/tbody/tr/td[1]/form/div/center/table/tbody/tr/td[1]/div/center/table/tbody/tr[1]/td[2]/p/input"));
+		WebElement addPassword = driver.findElement(By.xpath(
+				"/html/body/table/tbody/tr/td[1]/form/div/center/table/tbody/tr/td[1]/div/center/table/tbody/tr[2]/td[2]/p/input"));
+		WebElement submitNewUser = driver.findElement(By.xpath(
+				"/html/body/table/tbody/tr/td[1]/form/div/center/table/tbody/tr/td[1]/div/center/table/tbody/tr[3]/td[2]/p/input"));
+		addUsername.sendKeys(username1);
+		addPassword.sendKeys(password1);
+		submitNewUser.click();
+
+		// Go to the login tab
+		WebElement toLogin = driver
+				.findElement(By.xpath("/html/body/table/tbody/tr/td[1]/form/div/center/table/tbody/tr/td[2]/small/a"));
+		toLogin.click();
+
+		// Enter username and password
+		WebElement loginUsername = driver.findElement(By.xpath(
+				"/html/body/table/tbody/tr/td[1]/form/div/center/table/tbody/tr/td[1]/table/tbody/tr[1]/td[2]/p/input"));
+		WebElement loginPassword = driver.findElement(By.xpath(
+				"/html/body/table/tbody/tr/td[1]/form/div/center/table/tbody/tr/td[1]/table/tbody/tr[2]/td[2]/p/input"));
+		loginUsername.sendKeys(username1);
+		loginPassword.sendKeys(password1);
+
+		// Login
+		WebElement loginClick = driver.findElement(By.xpath(
+				"/html/body/table/tbody/tr/td[1]/form/div/center/table/tbody/tr/td[1]/table/tbody/tr[3]/td[2]/p/input"));
+		loginClick.click();
+	}
+
+	@Test
+	// create method
+	public void mthodTest2() {
+		
+		WebElement success = driver.findElement(By.xpath("/html/body/table/tbody/tr/td[1]/big/blockquote/blockquote/font/center/b"));
+WebElement result2 = driver.findElement(By.xpath());
+WebElement result3 = driver.findElement(By.xpath());
+WebElement result4 = driver.findElement(By.xpath());
+
+FileInputStream file = null;
+try {
+	file = new FileInputStream(Constants.PATHTOFILE + Constants.FILENAME);
+} catch (FileNotFoundException e) {
+}
+XSSFWorkbook workbook = null;
+try {
+	workbook = new XSSFWorkbook(file);
+} catch (IOException e) {
+}
+
+// create sheet
+XSSFSheet sheet = workbook.getSheetAt(0);
+
+// create + populate username cells
+XSSFCell username1 = sheet.getRow(1).createCell(0).setCellValue(username1);
+XSSFCell username2 = sheet.getRow(2).createCell(0).setCellValue(username2);
+XSSFCell username3 = sheet.getRow(3).createCell(0).setCellValue(username3);
+XSSFCell username4 = sheet.getRow(4).createCell(0).setCellValue(username4);
+
+// create + populate password cells
+XSSFCell password1 = sheet.getRow(4).createCell(1).setCellValue(password1);
+XSSFCell password2 = sheet.getRow(4).createCell(1).setCellValue(password2);
+XSSFCell password3 = sheet.getRow(4).createCell(1).setCellValue(password3);
+XSSFCell password4 = sheet.getRow(4).createCell(1).setCellValue(password4);
+
+// create = populate results cells
+		if (success == true)
+XSSFCell rslt1 = sheet.getRow(1).getCell(2).setCellValue();
+XSSFCell rslt2 = sheet.getRow(2).getCell(2).setCellValue();
+/XSSFCell rslt3 = sheet.getRow(3).getCell(2).setCellValue();
+XSSFCell rslt4 = sheet.getRow(4).getCell(2).setCellValue();
+
+// print cells
+System.out.println(result1.getStringCellValue());
+System.out.println(result2.getStringCellValue());
+System.out.println(result3.getStringCellValue());
+System.out.println(result4.getStringCellValue());
+
+// save workbook
+try {
+	FileOutputStream out = new FileOutputStream(new File(Constants.PATHTOFILE + Constants.FILENAME));
+	workbook.write(out);
+	out.close();
+		System.out.println("Saved");
+	} catch (IOException e) {
+	}
+}
+}

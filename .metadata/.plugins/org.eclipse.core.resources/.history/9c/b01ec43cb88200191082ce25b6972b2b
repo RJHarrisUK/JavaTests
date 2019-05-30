@@ -1,0 +1,6 @@
+package Constants;
+
+public class Constants {
+
+	public final String PATHTOFILE = "C:\\Users\\Admin\\Downloads";
+}
