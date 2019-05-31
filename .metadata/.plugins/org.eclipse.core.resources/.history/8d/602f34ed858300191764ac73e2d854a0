@@ -1,0 +1,63 @@
+package com.bae.mp2.selenium;
+
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
+
+import cucumber.api.java.en.Given;
+import cucumber.api.java.en.Then;
+import cucumber.api.java.en.When;
+
+public class BDDTest {
+
+	public static WebDriver driver;
+	
+	@Given("^the correct web address$")
+	public void the_correct_web_address() {
+		System.setProperty("webdriver.chrome.driver",
+				"C:\\Users\\Admin\\Downloads\\chromedriver_win32\\chromedriver.exe");
+		driver = new ChromeDriver();
+		driver.manage().window().maximize();
+		driver.get("http://automationpractice.com/index.php");
+	}
+
+	@When("^I navigate to the 'Menu' page$")
+	public void i_navigate_to_the_Menu_page() {
+		WebElement search = driver.findElement(By.xpath("//*[@id=\"search_query_top\"]"));
+		search.sendKeys("Dress");
+		search.submit();
+	}
+
+	@Then("^I can browse a list of the available products\\.$")
+	public void i_can_browse_a_list_of_the_available_products() {
+		WebElement checkDress = driver.findElement(By.xpath("//ul[contains(@class, 'product_list')]//h5/a[contains(@title, 'Dress')]"));
+		Boolean check = checkDress.isDisplayed();
+		if (check) {
+			System.out.println("Pass");
+			assertTrue(check);
+		} else { 
+			System.out.println("Fail");
+			fail();
+			}
+		WebElement dressSelect = driver.findElement(By.xpath("//*[@id=\"center_column\"]/ul/li[2]/div/div[1]/div/a[1]/img"));
+		Actions action = new Actions(driver);
+		action.moveToElement(dressSelect).perform();
+	}
+
+	@When("^I click the checkout button$")
+	public void i_click_the_checkout_button() {
+		WebElement proceedCheckout = driver.findElement(By.xpath("//*[@id=\"add_to_cart\"]/button/span"));
+		proceedCheckout.click();s
+	}
+
+	@Then("^I am taken to the checkout page$")
+	public void i_am_taken_to_the_checkout_page() {
+	    // Write code here that turns the phrase above into concrete actions
+	}
+
+}

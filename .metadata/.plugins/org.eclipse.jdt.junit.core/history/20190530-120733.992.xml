@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?><testrun name="ApachePOITest" project="selenium" tests="1" started="1" failures="0" errors="0" ignored="0">
-  <testsuite name="com.bae.mp2.selenium.ApachePOITest" time="24.68">
-    <testcase name="mthodTest" classname="com.bae.mp2.selenium.ApachePOITest" time="24.68"/>
-  </testsuite>
-</testrun>

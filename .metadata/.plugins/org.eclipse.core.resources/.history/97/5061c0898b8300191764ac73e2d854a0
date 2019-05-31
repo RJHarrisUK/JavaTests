@@ -1,0 +1,30 @@
+package com.bae.mp2.selenium;
+
+import org.junit.AfterClass;
+import org.junit.BeforeClass;
+import org.junit.runner.RunWith;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+import cucumber.api.CucumberOptions;
+import cucumber.api.junit.Cucumber;
+
+@RunWith(Cucumber.class)
+@CucumberOptions(features = "C:\\Users\\Admin\\eclipse-workspace\\selenium\\src\test\\java\\TeaTesting.feature", glue = {"src/test/java/com.bae.mp2.selenium"})
+public class Runner {
+
+	public static WebDriver driver;
+	
+	@BeforeClass
+	public static void setup() {
+		System.setProperty("webdriver.chrome.driver",
+				"C:\\Users\\Admin\\Downloads\\chromedriver_win32\\chromedriver.exe");
+		driver = new ChromeDriver();
+	}
+	
+	@AfterClass
+	public static void teardown() throws InterruptedException {
+		Thread.sleep(5000);
+		driver.quit();
+	
+}
