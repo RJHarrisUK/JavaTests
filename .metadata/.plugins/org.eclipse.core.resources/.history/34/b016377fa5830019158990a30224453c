@@ -42,13 +42,18 @@ public class SecondBDDTest {
 		WebElement searchbar = driver.findElement(By.xpath("//*[@id=\"sb_form_q\"]"));
 		searchbar.click();
 		searchbar.sendKeys(arg1);
+//		Actions action = new Actions(driver);
+//		action.sendKeys(arg1);
 		searchbar.submit();
 	}
 
 	@Then("^I am taken to a list of data of \"([^\"]*)\" for that search$")
 	public void i_am_taken_to_a_list_of_data_of_for_that_search(String arg1) throws InterruptedException {
-		Thread.sleep(1500);
-		WebElement firstResult = driver.findElement(By.xpath("//*[@id=\"b_results\"]/li[1]"));
+		Thread.sleep(1000);
+		WebElement results = driver.findElement(By.xpath("//*[@id=\"b_results\"]"));
+		results.isDisplayed();
+
+		WebElement firstResult = driver.findElement(By.xpath("//*[@id=\"b_results\"]/li[1]/h2/a"));
 		assertTrue(firstResult.getText().toLowerCase().contains(arg1.toLowerCase()));
 	}
 
